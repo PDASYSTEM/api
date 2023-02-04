@@ -1,60 +1,115 @@
-# Whatsapp API Tutorial
+[![npm](https://img.shields.io/npm/v/whatsapp-web.js.svg)](https://www.npmjs.com/package/whatsapp-web.js) [![Depfu](https://badges.depfu.com/badges/4a65a0de96ece65fdf39e294e0c8dcba/overview.svg)](https://depfu.com/github/pedroslopez/whatsapp-web.js?project_id=9765) ![WhatsApp_Web 2.2301.6](https://img.shields.io/badge/WhatsApp_Web-2.2301.6-brightgreen.svg) [![Discord Chat](https://img.shields.io/discord/698610475432411196.svg?logo=discord)](https://discord.gg/H7DqQs4)  
 
-Hi, this is the implementation example of <a href="https://github.com/pedroslopez/whatsapp-web.js">whatsapp-web.js</a>
+# whatsapp-web.js
+A WhatsApp API client that connects through the WhatsApp Web browser app
 
-Watch the tutorials:
+It uses Puppeteer to run a real instance of Whatsapp Web to avoid getting blocked.
 
-- <a href="https://youtu.be/IRRiN2ZQDc8">Whatsapp API Tutorial: Part 1</a>
-- <a href="https://youtu.be/hYpRQ_FE1JI">Whatsapp API Tutorial: Part 2</a>
-- <a href="https://youtu.be/uBu7Zfba1zA">Whatsapp API Tutorial: Tips & Tricks</a>
-- <a href="https://youtu.be/ksVBXF-6Jtc">Whatsapp API Tutorial: Sending Media File</a>
-- <a href="https://youtu.be/uSzjbuaHexk">Whatsapp API Tutorial: Deploy to Heroku</a>
-- <a href="https://youtu.be/5VfM9PvrYcE">Whatsapp API Tutorial: Multiple Device</a>
-- <a href="https://youtu.be/Cq8ru8iKAVk">Whatsapp API Tutorial: Multiple Device | Part 2</a>
-- <a href="https://youtu.be/bgxxUWqW6WU">Whatsapp API Tutorial: Fix Heroku Session</a>
-- <a href="https://youtu.be/iode8kstDYQ">Whatsapp API Tutorial: Dynamic Message Reply</a>
-- <a href="https://youtu.be/PF_MWklEQpM">Whatsapp API Tutorial: Fix Session & Support for Multi-Device Beta</a>
+**NOTE:** I can't guarantee you will not be blocked by using this method, although it has worked for me. WhatsApp does not allow bots or unofficial clients on their platform, so this shouldn't be considered totally safe.
 
-## Important thing!
+## Quick Links
 
-As because Whatsapp regularly makes an update, so we needs to always **use the latest version of whatsapp-web.js**. Some errors may occurs with the old versions, so please try to update the library version before creating an issue.
+* [Guide / Getting Started](https://wwebjs.dev/guide) _(work in progress)_
+* [Reference documentation](https://docs.wwebjs.dev/)
+* [GitHub](https://github.com/pedroslopez/whatsapp-web.js)
+* [npm](https://npmjs.org/package/whatsapp-web.js)
 
-### How to use?
+## Installation
 
-- Clone or download this repo
-- Enter to the project directory
-- Run `npm install`
-- Run `npm run start:dev`
-- Open browser and go to address `http://localhost:8000`
-- Scan the QR Code
-- Enjoy!
+The module is now available on npm! `npm i whatsapp-web.js`
 
-### Send message to group
+Please note that Node v12+ is required.
 
-You can send the message to any group by using `chatID` or group `name`, chatID will used if you specify the `id` field in the form, so if you want to send by `name`, only use name.
+## Example usage
 
-**Paramaters:**
+```js
+const { Client } = require('whatsapp-web.js');
 
-- `id` (optional if name given): the chat ID
-- `name` (optional): group name
-- `message`: the message
+const client = new Client();
 
-Here the endpoint: `/send-group-message`
+client.on('qr', (qr) => {
+    // Generate and scan this code with your phone
+    console.log('QR RECEIVED', qr);
+});
 
-Here the way to get the groups info (including ID & name):
+client.on('ready', () => {
+    console.log('Client is ready!');
+});
 
-- Send a message to the API number `!groups`
-- The API will replying with the groups info
-- Use the ID to send a message
+client.on('message', msg => {
+    if (msg.body == '!ping') {
+        msg.reply('pong');
+    }
+});
 
-### Downloading media
+client.initialize();
+```
 
-I add an example to downloading the message media if exists. Please check it in `on message` event!
+Take a look at [example.js](https://github.com/pedroslopez/whatsapp-web.js/blob/master/example.js) for another example with more use cases.
 
-We use `mime-types` package to get the file extension by it's mimetype, so we can download all of the type of media message.
+For more information on saving and restoring sessions, check out the available [Authentication Strategies](https://wwebjs.dev/guide/authentication.html).
 
-And we decided (for this example) to use time as the filename, because the media filename is not certain exists.
 
-## Support Me
+## Supported features
 
-You can make a support for this work by [DONATING](./DONATE.md). Thank you.
+| Feature  | Status |
+| ------------- | ------------- |
+| Multi Device  | ✅  |
+| Send messages  | ✅  |
+| Receive messages  | ✅  |
+| Send media (images/audio/documents)  | ✅  |
+| Send media (video)  | ✅ [(requires google chrome)](https://wwebjs.dev/guide/handling-attachments.html#caveat-for-sending-videos-and-gifs)  |
+| Send stickers | ✅ |
+| Receive media (images/audio/video/documents)  | ✅  |
+| Send contact cards | ✅ |
+| Send location | ✅ |
+| Send buttons | ✅ |
+| Send lists | ✅ (business accounts not supported) |
+| Receive location | ✅ | 
+| Message replies | ✅ |
+| Join groups by invite  | ✅ |
+| Get invite for group  | ✅ |
+| Modify group info (subject, description)  | ✅  |
+| Modify group settings (send messages, edit info)  | ✅  |
+| Add group participants  | ✅  |
+| Kick group participants  | ✅  |
+| Promote/demote group participants | ✅ |
+| Mention users | ✅ |
+| Mute/unmute chats | ✅ |
+| Block/unblock contacts | ✅ |
+| Get contact info | ✅ |
+| Get profile pictures | ✅ |
+| Set user status message | ✅ |
+| React to messages | ✅ |
+
+Something missing? Make an issue and let us know!
+
+## Contributing
+
+Pull requests are welcome! If you see something you'd like to add, please do. For drastic changes, please open an issue first.
+
+## Supporting the project
+
+You can support the maintainer of this project through the links below
+
+- [Support via GitHub Sponsors](https://github.com/sponsors/pedroslopez)
+- [Support via PayPal](https://www.paypal.me/psla/)
+- [Sign up for DigitalOcean](https://m.do.co/c/73f906a36ed4) and get $200 in credit when you sign up (Referral)
+
+## Disclaimer
+
+This project is not affiliated, associated, authorized, endorsed by, or in any way officially connected with WhatsApp or any of its subsidiaries or its affiliates. The official WhatsApp website can be found at https://whatsapp.com. "WhatsApp" as well as related names, marks, emblems and images are registered trademarks of their respective owners.
+
+## License
+
+Copyright 2019 Pedro S Lopez
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this project except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
