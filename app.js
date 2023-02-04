@@ -56,6 +56,10 @@ const client = new Client({
   authStrategy: new LocalAuth()
 });
 
+const browser = await puppeteer.launch({
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+});
+
 client.on('message', msg => {
   if (msg.body == '!ping') {
     msg.reply('pong');
