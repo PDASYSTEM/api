@@ -23,6 +23,7 @@
     "mime-types": "^2.1.35",
     "qrcode": "^1.5.1",
     "socket.io": "4.6.0",
+    "puppeteer": "19.6.3",
     "whatsapp-web.js": "1.19.3"
   },
   "devDependencies": {
