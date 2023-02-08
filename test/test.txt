@@ -1,0 +1,106 @@
+https://pm2.keymetrics.io/docs/integrations/heroku/
+npm run start
+
+heroku logs --tail -a pvx-bot-md1
+npm install ytdl-core@4.10.0
+npm i git://github.com/adiwajshing/Baileys.git#a75d9118bdc7829a12dcb5f758dc5f92528a272d
+
+Connected
+connection update { connection: 'open' }
+connection update { receivedPendingNotifications: true }
+
+# ------------------------------- DROP TABLE ------------------------------- #
+begin;
+set transaction read write;
+DROP table count;
+COMMIT;
+
+SELECT * FROM countmember WHERE memberjid='919503442316@s.whatsapp.net' and groupjid='919557666582-1584193120@g.us';
+SELECT *,count(*) FROM countmember GROUP BY memberjid, groupjid, count HAVING count(*) > 1; //duplicate rows with all 3 column same
+select memberjid,groupjid,count(*) from countmember group by memberjid,groupjid having count(*)>1; //duplicate rows with (memberjid,groupjid) same
+
+//delete duplicate with every column same
+delete from countwarning a using countwarning b where a=b and a.ctid < b.ctid;
+
+begin;
+set transaction read write;
+ALTER TABLE countmember ADD COLUMN day text;
+COMMIT;
+
+//delete row
+begin;
+set transaction read write;
+delete from countmember WHERE groupjid='919557666582-1582555632@g.us';
+COMMIT;
+
+begin;
+set transaction read write;
+delete from countmember WHERE count<=5;
+COMMIT;
+
+begin;
+set transaction read write;
+UPDATE donation SET amount=100 WHERE name='Kumar';
+COMMIT;
+
+
+begin;
+set transaction read write;
+delete FROM countmember where groupjid='919557666582-1553695938@g.us';
+COMMIT;
+
+begin;
+set transaction read write;
+Alter table countmember
+Add constraint combi
+primary key (memberjid,groupjid); 
+COMMIT;
+
+
+Web-server running!
+
+Local file written
+using WA v2.2222.11, isLatest: true
+connection update {
+  connection: 'connecting',
+  receivedPendingNotifications: false,
+  qr: undefined
+}
+Connected
+connection update { connection: 'open' }
+------------------------------------------------
+Web-server running!
+
+Local file written
+using WA v2.2222.11, isLatest: true
+connection update {
+  connection: 'connecting',
+  receivedPendingNotifications: false,
+  qr: undefined
+}
+Connected
+connection update { connection: 'open' }
+connection update { receivedPendingNotifications: true }
+
+
+
+using WA v2.2222.11, isLatest: true
+connection update {
+  connection: 'connecting',
+  receivedPendingNotifications: false,
+  qr: undefined
+}
+
+
+$node --trace_gc index.js
+--inspect
+v8.writeHeapSnapshot
+process.memoryUsage
+
+
+$node --inspect index.js
+chrome://inspect
+
+
+alter table countwarning add check(count BETWEEN 1 and 3);
+
