@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "start:dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,8 +22,10 @@
     "http": "0.0.1-security",
     "mime-types": "^2.1.32",
     "qrcode": "^1.4.4",
-    "ws": "^8.0.0"
+    "socket.io": "2.3.0",
+    "whatsapp-web.js": "latest"
   },
   "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
