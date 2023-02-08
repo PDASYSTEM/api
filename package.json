@@ -21,7 +21,6 @@
     "http": "0.0.1-security",
     "mime-types": "^2.1.32",
     "qrcode": "^1.4.4",
-    "socket.io": "2.3.0",
     "ws": "^8.0.0"
   },
   "devDependencies": {
