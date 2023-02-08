@@ -15,7 +15,7 @@ env:
   NPMRegistry: https://registry.npmjs.org/
   InstallCommand: npm install
   BuildCommand: npm run start
-  Output: /node_modules
+  Output: ./node_modules
 
 jobs:
   build:
