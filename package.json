@@ -1,40 +1,21 @@
 {
-  "name": "whatsapp-bot-md",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "start2": "pm2-runtime start ecosystem.config.js --env production"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Shubhamrawat5/whatsapp-bot-md.git"
-  },
-  "author": "Shubham Rawat",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Shubhamrawat5/whatsapp-bot-md/issues"
-  },
-  "homepage": "https://github.com/Shubhamrawat5/whatsapp-bot-md#readme",
-  "dependencies": {
-    "@adiwajshing/baileys": "github:@adiwajshing/baileys" ,
-    "@adiwajshing/keyed-db": "^0.2.4",
-    "@ffmpeg-installer/ffmpeg": "^1.1.0",
-    "adm-zip": "^0.5.9",
-    "axios": "^0.27.2",
-    "dotenv": "^16.0.0",
-    "express": "^4.18.1",
-    "g-i-s": "^2.1.6",
-    "mongodb": "^4.7.0",
-    "node-cache": "^5.1.2",
-    "node-telegram-bot-api": "^0.61.0",
-    "pg": "^8.7.3",
-    "pm2": "^5.2.2",
-    "qrcode-terminal": "^0.12.0",
-    "rss-parser": "^3.12.0",
-    "wa-sticker-formatter": "^4.3.2",
-    "ytdl-core": "^4.10.0"
-  }
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "axios": "^0.21",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14"
+    },
+    "dependencies": {
+        "nodemon": "^2.0.16"
+    }
 }

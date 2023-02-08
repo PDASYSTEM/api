@@ -1,199 +1,136 @@
-## New Multi Device Whatsapp Bot
 
-Webpage -> https://shubhamrawat5.github.io/whatsapp-bot-md/
+# Baileys Restful API with Laravel
+An implementation of [@adiwajshing/Baileys](https://github.com/adiwajshing/Baileys) as a simple RESTful API service with multiple device support.
 
-Tutorial -> https://youtu.be/2gBzapttokk
+## Credits
+1. Framework : Laravel 8
+2. Admin Panel : Crudbooster
+3. Backend Server : [@ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api)
 
-Easy deploy your bot, steps in the bottom.
+## Requirement
+1. php 7.4
+2. MySQL / MariaDB
+3. NodeJs 14 or higher
 
-**_Requirements :_**
+## Frontend Installation
 
-- Git
-- Heroku account
-- Heroku cli
+1. First clone or download this repository:
+```bash
+git clone https://github.com/saifulcoder/laravel-whatsapp-server.git
+```
+2. Enter directory project `cd laravel-whatsapp-server`
+3. Execute `composer install` to install the dependencies.
+4. Setting the database configuration, rename `.env.example` to `.env` and open file at project root directory
+```bash
+DB_DATABASE=**your_db_name**
+DB_USERNAME=**your_db_user**
+DB_PASSWORD=**password**
+```
+5. Setting the URL backend server configuration, open `.env` file at project root directory
+```bash
+URL_WA_SERVER=http://localhost:8000
+```
+6. Run Migration Database the following command at the terminal:
+```bash
+ php artisan migrate:fresh --seed
+```
+or you can import db.sql
 
-# Instructions:- :rocket:
+7. Run laravel
+```bash
+php artisan serve --port=80
+```
+8. Dashboard Admin 
+```bash
+/admin/login
+```
+default email : admin@crudbooster.com <br>
+default password : 123456
 
-## Git Setup
 
-### Download and install git from (https://git-scm.com/downloads)
+## Backend Installation 
 
-## Heroku Setup
+Simple RESTful WhatsApp API by [@ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api) .
 
-1. Create account on heroku. (https://signup.heroku.com/)
+1. Enter to the baileys-api-master project directory `cd baileys-api-master`.
+2. Execute `npm i` to install the dependencies.
+3. You can start the app by executing `npm run start` or `node .`.
+4. Now the endpoint should be available according to your environment variable settings. Default is at `http://localhost:8000`.
 
-2. After login on heroku dashboard create an app on heroku (https://dashboard.heroku.com/apps)
+### Backend API DOCs 
 
-3. In the 'Resources' tab search for 'Heroku Postgres' in Add-ons and add it to your heroku app.
+The API baileys-api-master documentation is available online at [here](https://documenter.getpostman.com/view/18988925/UVeNni36). You can also import the **Postman Collection File** `(postman_collection.json)` into your Postman App alternatively.
 
-4. In the 'Deploy' section download Heroku CLI or from (https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+The server will respond in JSON format:
 
-## Heroku CLI
+```javascript
+// Send text message
+{
+    receiver: '628231xxxxx',
+    message: {
+        text: 'Hello there!'
+    }
+}
 
-1. After downloading and installing Heroku CLI in your system login to heroku cli using `heroku login` in command prompt or powershell.
-2. Add ffmpeg (_for sticker support_) in your heroku app using `heroku buildpacks:add https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git -a <your-app-name>`
-3. After adding ffmpeg now add 'Heroku Buildpack for Node.js' using `heroku buildpacks:add https://github.com/heroku/heroku-buildpack-nodejs.git -a <your-app-name>`
-4. Now download or clone the whatsapp-bot repo by `git clone https://github.com/Shubhamrawat5/whatsapp-bot-md.git`
-5. Now enter in whatsapp-bot directory using `cd whatsapp-bot-md` in command prompt or terminal.
-6. Create the remote region using `heroku git:remote -a <your-app-name>`
-7. Now push the local repo in your heroku app using `git push heroku master`
-8. Now after the deploy process is completed use `heroku logs -a <your-app-name> --tail` to get real time logs from heroku app.
-9. In real time logs it will automatically ask you for login using qr code just simple scan the qr code using your whatsapp web section, and you are done.
+// Send image
+{
+    receiver: '628231xxxxx',
+    message: {
+        image: {
+            url: 'https://example.com/logo.png'
+        },
+        caption: 'My logo'
+    }
+}
 
-Now Bot will start working!! Work even if the device is offline!!
+// Send video
+{
+    receiver: '628231xxxxx',
+    message: {
+        video: {
+            url: 'https://example.com/intro.mp4'
+        },
+        caption: 'My intro'
+    }
+}
 
-# Features:- :rocket:
+// Send document
+{
+    receiver: '628231xxxxx',
+    message: {
+        document: {
+            url: 'https://example.com/presentation.pdf'
+        },
+        mimetype: 'application/pdf',
+        fileName: 'presentation-1.pdf'
+    }
+}
+```
 
-1. It count messages of every member in all the groups in DB. (just the message count, not actual text message), so that we can see stats like top members, top groups, etc.
-2. It also forwards every sticker that is sent to any of the PVX groups to another group i.e. Sticker Only, where members can have access to different different types of stickers 24x7.
-3. It posts tech news to tech group and trending india news to study group every 20 min.
-4. It notifys the birthday in the community group when new day starts.
-5. It welcomes new users when joined with some questions/rules.
-6. It automatically bans any user with a non-Indian number (any number without +91 code).
+# Functions laravel-wa-server
 
-## Default prefix : `!`
+|                                                               |   |
+|---------------------------------------------------------------|---|
+| Multiple Device                                               | ✔ |
+| 📁 Send **text**                                             | ✔ |
+| Admin Panel                                                  | ✔ |
+| Multiple Users                                                | ✔ |
+| User Privilege                                              | ✔ |
+| API RESTFul                                              | ✔ |
+| 📁 Send **image, video, audio and docs**                      | ✔ |
+| Send stickers                                                 | ✔ |
+| Send stickers GIF                                             | ✔ |
+| Send Buttons                                                  | coming soon |
+| Send Bulk Message                                             | coming soon |
+| Send Message with schedule                                    | coming soon |
+| Receive message                                               | coming soon |
+| Get Chat List                                                | coming soon |
+| Get Chat Conversation                                         | coming soon |
+| Webhook                                                    | coming soon |
 
-## Commands :
+## Contributing
 
-|  Public Commands  |          Description           | Alias |
-| :---------------: | :----------------------------: | :---: |
-|      `!help`      |    Display public commands     | `!h`  |
-|     `!helpa`      |     Display admin commands     |       |
-|     `!helpo`      |   Display bot owner commands   |       |
-|    `!donation`    |      Get Donation details      |       |
-|     `!alive`      |     Check bot is ON or OFF     | `!a`  |
-|    `!feedback`    |       Get feedback form        |       |
-|  `!votecommand`   |   Get list of vote commands    | `!vc` |
-|    `!pvxlink`     |     Get group links of PVX     |       |
-|      `!dev`       |     Get the contact of dev     |       |
-| `!cricketcommand` |  Get list of cricket commands  | `!cc` |
-|     `!source`     |       Get the bot source       |       |
-|     `!steal`      | Change sticker name to PVX BOT |       |
-
-<hr>
-
-| Member Commands |                    Description                    |    Alias     |
-| :-------------: | :-----------------------------------------------: | :----------: |
-|  `!tagadmins`   |              Tag all admins of group              |    `!ta`     |
-|     `!rank`     |    Know message count & rank in all PVX groups    |              |
-|    `!ranks`     |           Know ranks list of PVX groups           |              |
-|    `!totalg`    |    Know message count group wise in PVX groups    |              |
-|   `!sticker`    |     Create sticker from different media types     |     `!s`     |
-|    `!image`     |             Create image from sticker             |              |
-| `!imagesearch`  |            Search image from any name             |    `!is`     |
-| `!searchsearch` |           Search sticker from any name            |    `!ss`     |
-|     `!song`     |           Get any song in good quality            |              |
-|    `!insta`     |          Get insta reels or post videos           |     `!i`     |
-|      `!fb`      |                Get facebook videos                |              |
-|     `!ytv`      |              Download youtube videos              |              |
-|     `!yta`      |              Download youtube audio               |              |
-|   `!technews`   |               Get latest Tech news                |              |
-|    `!drive`     |           Get GDrive files direct link            |              |
-|    `!quote`     |                Give a random quote                |              |
-|    `!gender`    |            Get gender from first name             |              |
-|    `!score`     |                Give Cricket score                 |              |
-|  `!scorecard`   |              Give Cricket scorecard               | `!sc`, `!sb` |
-|    `!startc`    |            Start Cricket score updated            |              |
-|    `!stopc`     |            Stop Cricket score updated             |              |
-|  `!startvote`   |               Start voting in group               |              |
-|     `!vote`     |                 Vote for a choice                 |              |
-|  `!checkvote`   |          Check status of current voting           |    `!cv`     |
-|   `!stotvote`   |            Stop voting and see result             |              |
-|   `!votepvx`    |       Vote for a choice for all PVX groups        |              |
-| `!checkvotepvx` | Check status of current voting for all PVX groups |   `!cvpvx`   |
-|    `!rules`     |               Get PVX groups rules                |     `!r`     |
-
-<hr>
-
-|   Admin Commands   |                          Description                           |     Alias     |
-| :----------------: | :------------------------------------------------------------: | :-----------: |
-|       `!add`       |                      Add member to group                       |               |
-|      `!kick`       |                     kick member from group                     |    `!ban`     |
-|      `!mute`       |                         Mute the group                         |               |
-|     `!unmute`      |                        Unmute the group                        |               |
-|     `!delete`      |                     Delete anyone message                      |     `!d`      |
-|     `!warning`     |                      Give warning to user                      |    `!warn`    |
-|   `!warninglist`   |                  Check warning of all members                  |  `!warnlist`  |
-|  `!warningreduce`  |                     Reduce warning to user                     | `!warnreduce` |
-|  `!warningclear`   |                   Clear all warning to user                    | `!warnclear`  |
-|  `!warningcheck`   |                     Check warning to user                      | `!warncheck`  |
-|     `!enable`      |                Enable command for current group                |               |
-|     `!disable`     |               Disable command for current group                |               |
-|      `!pvxg`       |             Get message count stats of PVX groups              |               |
-|      `!pvxm`       |      Get members message count stats of current PVX group      |               |
-|      `!pvxtm`      | Get members message count stats with rank of current PVX group |   `!pvxmt`    |
-|      `!pvxt`       |       Get top members message count stats of PVX groups        |               |
-|      `!pvxt5`      |    Get top 5 members message count stats of all PVX groups     |               |
-|      `!zero`       |             Get members list with 0 message count              |               |
-|    `!pvxstats`     |                    Get stats of PVX groups                     |               |
-|    `!blacklist`    |                     Get blacklist numbers                      |               |
-|  `!blacklistadd`   |                    Add number to blacklist                     |    `!bla`     |
-| `!blacklistremove` |                  Remove number from blacklist                  |    `!blr`     |
-
-<hr>
-
-| Owner Commands  |                  Description                  | Alias |
-| :-------------: | :-------------------------------------------: | :---: |
-| `!donationadd`  |             Add Donation details              | `!da` |
-|  `!countstats`  |      Get stats of number of command used      |       |
-|     `!test`     |      execute code with whatsapp directly      |       |
-|  `!broadcast`   |       Broadcast a message to all groups       | `!bc` |
-|    `!tagall`    |           Tag all members in group            |       |
-|    `!gname`     |            Save group names to DB             |       |
-|      `!tg`      |            Make TG to WA stickers             |       |
-|     `!stg`      |            Stop TG to WA stickers             |       |
-| `!groupbackup`  |            Take group backup in DB            |       |
-| `!startvotepvx` |        Start voting for all PVX groups        |       |
-| `!stotvotepvx`  | Stop voting and see result for all PVX groups |       |
-
-- CRICKET SCORES:
-
-  > Put match id in starting of group description.
-
-  > Get match ID from cricbuzz url, like https://www.cricbuzz.com/live-cricket-scores/37572/mi-vs-kkr-34th-match-indian-premier-league-2021 so match ID is `37572`
-
-  EXAMPLE:
-
-  <img src="https://i.ibb.co/2Z8t9Qm/IMG-20211006-154704.jpg" width="400"/>
-
-# Run locally:- :rocket:
-
-Create a `.env` file for enviromental variables in local directory with following values without quote
-
-    myNumber = "your-number-to-receive-all-updates"
-    DATABASE_URL = "get-from-heroku-dashboard"
-
-Get value of database_url from Heroku dashboard > settings > reveal config vars
-
-Run the index file by `node index.js`
-
-# Note:- :rocket:
-
-Since heroku uses:- Dyno sleeping in which if an app has a free web dyno, and that dyno receives no web traffic in a 30-minute period, it will sleep. In addition to the web dyno sleeping, the worker dyno (if present) will also sleep. and if a sleeping web dyno receives web traffic, it will become active again after a short delay (assuming your account has free dyno hours available)
-You can use (http://kaffeine.herokuapp.com) to ping the heroku app every 30 minutes to prevent it from sleeping.
-
-# References:- :rocket:
-
-- [@Baileys](https://github.com/adiwajshing/Baileys)
-- Old non md wa bot [PVX Bot](https://github.com/Shubhamrawat5/whatsapp-bot).
-
-# Easy way to deploy:- :rocket:
-
-[Heroku is no longer free]
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Shubhamrawat5/whatsapp-bot-md)
-
-Your bot will be deployed on heroku but still you need to install heroku locally to scan QR code
-
-1. Download Heroku CLI from [here](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
-2. Open terminal
-3. Type command `heroku login` and give access
-4. Type command `heroku logs -a <your-app-name> --tail`
-
-Now you'll see QR code, scan with your device and bot will start working!
-
-- To get owner commands
-
-  Go to heroku daskboard then settings then config vars
-
-  Add KEY as `myNumber` and VALUE as `911234567890` (your number with country code and no + sign)
+This project helps you and you want to help keep it going? Buy me a coffee:
+<br> <a href="https://www.buymeacoffee.com/saifulcoder" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 61px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a><br>
+or via <br>
+<a href="https://saweria.co/saifulcoder">https://saweria.co/saifulcoder</a>
