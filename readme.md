@@ -1,136 +1,60 @@
+# Whatsapp API Tutorial
 
-# Baileys Restful API with Laravel
-An implementation of [@adiwajshing/Baileys](https://github.com/adiwajshing/Baileys) as a simple RESTful API service with multiple device support.
+Hi, this is the implementation example of <a href="https://github.com/pedroslopez/whatsapp-web.js">whatsapp-web.js</a>
 
-## Credits
-1. Framework : Laravel 8
-2. Admin Panel : Crudbooster
-3. Backend Server : [@ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api)
+Watch the tutorials:
 
-## Requirement
-1. php 7.4
-2. MySQL / MariaDB
-3. NodeJs 14 or higher
+- <a href="https://youtu.be/IRRiN2ZQDc8">Whatsapp API Tutorial: Part 1</a>
+- <a href="https://youtu.be/hYpRQ_FE1JI">Whatsapp API Tutorial: Part 2</a>
+- <a href="https://youtu.be/uBu7Zfba1zA">Whatsapp API Tutorial: Tips & Tricks</a>
+- <a href="https://youtu.be/ksVBXF-6Jtc">Whatsapp API Tutorial: Sending Media File</a>
+- <a href="https://youtu.be/uSzjbuaHexk">Whatsapp API Tutorial: Deploy to Heroku</a>
+- <a href="https://youtu.be/5VfM9PvrYcE">Whatsapp API Tutorial: Multiple Device</a>
+- <a href="https://youtu.be/Cq8ru8iKAVk">Whatsapp API Tutorial: Multiple Device | Part 2</a>
+- <a href="https://youtu.be/bgxxUWqW6WU">Whatsapp API Tutorial: Fix Heroku Session</a>
+- <a href="https://youtu.be/iode8kstDYQ">Whatsapp API Tutorial: Dynamic Message Reply</a>
+- <a href="https://youtu.be/PF_MWklEQpM">Whatsapp API Tutorial: Fix Session & Support for Multi-Device Beta</a>
 
-## Frontend Installation
+## Important thing!
 
-1. First clone or download this repository:
-```bash
-git clone https://github.com/saifulcoder/laravel-whatsapp-server.git
-```
-2. Enter directory project `cd laravel-whatsapp-server`
-3. Execute `composer install` to install the dependencies.
-4. Setting the database configuration, rename `.env.example` to `.env` and open file at project root directory
-```bash
-DB_DATABASE=**your_db_name**
-DB_USERNAME=**your_db_user**
-DB_PASSWORD=**password**
-```
-5. Setting the URL backend server configuration, open `.env` file at project root directory
-```bash
-URL_WA_SERVER=http://localhost:8000
-```
-6. Run Migration Database the following command at the terminal:
-```bash
- php artisan migrate:fresh --seed
-```
-or you can import db.sql
+As because Whatsapp regularly makes an update, so we needs to always **use the latest version of whatsapp-web.js**. Some errors may occurs with the old versions, so please try to update the library version before creating an issue.
 
-7. Run laravel
-```bash
-php artisan serve --port=80
-```
-8. Dashboard Admin 
-```bash
-/admin/login
-```
-default email : admin@crudbooster.com <br>
-default password : 123456
+### How to use?
 
+- Clone or download this repo
+- Enter to the project directory
+- Run `npm install`
+- Run `npm run start:dev`
+- Open browser and go to address `http://localhost:8000`
+- Scan the QR Code
+- Enjoy!
 
-## Backend Installation 
+### Send message to group
 
-Simple RESTful WhatsApp API by [@ookamiiixd/baileys-api](https://github.com/ookamiiixd/baileys-api) .
+You can send the message to any group by using `chatID` or group `name`, chatID will used if you specify the `id` field in the form, so if you want to send by `name`, only use name.
 
-1. Enter to the baileys-api-master project directory `cd baileys-api-master`.
-2. Execute `npm i` to install the dependencies.
-3. You can start the app by executing `npm run start` or `node .`.
-4. Now the endpoint should be available according to your environment variable settings. Default is at `http://localhost:8000`.
+**Paramaters:**
 
-### Backend API DOCs 
+- `id` (optional if name given): the chat ID
+- `name` (optional): group name
+- `message`: the message
 
-The API baileys-api-master documentation is available online at [here](https://documenter.getpostman.com/view/18988925/UVeNni36). You can also import the **Postman Collection File** `(postman_collection.json)` into your Postman App alternatively.
+Here the endpoint: `/send-group-message`
 
-The server will respond in JSON format:
+Here the way to get the groups info (including ID & name):
 
-```javascript
-// Send text message
-{
-    receiver: '628231xxxxx',
-    message: {
-        text: 'Hello there!'
-    }
-}
+- Send a message to the API number `!groups`
+- The API will replying with the groups info
+- Use the ID to send a message
 
-// Send image
-{
-    receiver: '628231xxxxx',
-    message: {
-        image: {
-            url: 'https://example.com/logo.png'
-        },
-        caption: 'My logo'
-    }
-}
+### Downloading media
 
-// Send video
-{
-    receiver: '628231xxxxx',
-    message: {
-        video: {
-            url: 'https://example.com/intro.mp4'
-        },
-        caption: 'My intro'
-    }
-}
+I add an example to downloading the message media if exists. Please check it in `on message` event!
 
-// Send document
-{
-    receiver: '628231xxxxx',
-    message: {
-        document: {
-            url: 'https://example.com/presentation.pdf'
-        },
-        mimetype: 'application/pdf',
-        fileName: 'presentation-1.pdf'
-    }
-}
-```
+We use `mime-types` package to get the file extension by it's mimetype, so we can download all of the type of media message.
 
-# Functions laravel-wa-server
+And we decided (for this example) to use time as the filename, because the media filename is not certain exists.
 
-|                                                               |   |
-|---------------------------------------------------------------|---|
-| Multiple Device                                               | ✔ |
-| 📁 Send **text**                                             | ✔ |
-| Admin Panel                                                  | ✔ |
-| Multiple Users                                                | ✔ |
-| User Privilege                                              | ✔ |
-| API RESTFul                                              | ✔ |
-| 📁 Send **image, video, audio and docs**                      | ✔ |
-| Send stickers                                                 | ✔ |
-| Send stickers GIF                                             | ✔ |
-| Send Buttons                                                  | coming soon |
-| Send Bulk Message                                             | coming soon |
-| Send Message with schedule                                    | coming soon |
-| Receive message                                               | coming soon |
-| Get Chat List                                                | coming soon |
-| Get Chat Conversation                                         | coming soon |
-| Webhook                                                    | coming soon |
+## Support Me
 
-## Contributing
-
-This project helps you and you want to help keep it going? Buy me a coffee:
-<br> <a href="https://www.buymeacoffee.com/saifulcoder" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 61px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a><br>
-or via <br>
-<a href="https://saweria.co/saifulcoder">https://saweria.co/saifulcoder</a>
+You can make a support for this work by [DONATING](./DONATE.md). Thank you.

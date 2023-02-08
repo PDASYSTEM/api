@@ -1,21 +1,31 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
-    },
-    "devDependencies": {
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
-    },
-    "dependencies": {
-        "nodemon": "^2.0.16"
-    }
+  "name": "whatsapp-api",
+  "version": "1.0.0",
+  "description": "Whatsapp api by Ngekoding",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "whatsapp-api",
+    "node.js"
+  ],
+  "author": "Nur Muhammad",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-validator": "^6.9.2",
+    "http": "0.0.1-security",
+    "mime-types": "^2.1.32",
+    "qrcode": "^1.4.4",
+    "socket.io": "2.3.0",
+    "whatsapp-web.js": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
