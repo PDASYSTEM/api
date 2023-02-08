@@ -15,8 +15,7 @@
   "author": "Nur Muhammad",
   "license": "MIT",
   "dependencies": {
-    "slim": "^0.11.1",
-    "whatsapp-web.js": "1.8.1"
+    "slim": "^0.11.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
